@@ -1,13 +1,39 @@
 package main
 
-import "gofr.dev/pkg/gofr"
-
+import (
+	"github.com/ayushvaish2511/CRUD_GOFR/handler"
+	"github.com/ayushvaish2511/CRUD_GOFR/migrations"
+	"github.com/ayushvaish2511/CRUD_GOFR/store"
+	"gofr.dev/cmd/gofr/migration"
+	dbmigration "gofr.dev/cmd/gofr/migration/dbMigration"
+	"gofr.dev/pkg/gofr"
+)
 
 func main() {
 	app := gofr.New()
 
-	app.GET("/", func (ctx *gofr.Context) (interface{}, error) {
-		return "Hello World", nil
-	})
+	s := store.New()
+	h := handler.New(s)
+
+	appName := app.Config.Get("APP_NAME")
+
+	err := migration.Migrate(appName, dbmigration.NewGorm(app.GORM()), migrations.All(),
+		dbmigration.UP, app.Logger)
+	if err != nil {
+		app.Logger.Error(err)
+
+		return
+	}
+
+	// specifying the different routes supported by this service
+	app.GET("/customer", h.Get)
+	app.GET("/customer/{id}", h.GetById)
+	app.POST("/customer", h.Create)
+	app.PUT("/customer/{id}", h.Update)
+	app.DELETE("/customer/{id}", h.Delete)
+	
+	// starting the server on a custom port
+	app.Server.HTTP.Port = 9092
+	app.Server.MetricsPort = 2325
 	app.Start()
 }

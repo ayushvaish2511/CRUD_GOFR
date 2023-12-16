@@ -88,3 +88,30 @@ func (h handler) Delete(ctx *gofr.Context) (interface{}, error) {
 
 	return "Deleted successfully", nil
 }
+
+func (h handler) Update(ctx *gofr.Context) (interface{}, error) {
+	i := ctx.PathParam("id")
+	if i == "" {
+		return nil, errors.MissingParam{Param: []string{"id"}}
+	}
+
+	id, err := uuid.Parse(i)
+	if err != nil {
+		return nil, errors.InvalidParam{Param: []string{"id"}}
+	}
+
+	var cust model.Customer
+	if err = ctx.Bind(&cust); err != nil {
+		ctx.Logger.Errorf("error in binding: %v", err)
+		return nil, errors.InvalidParam{Param: []string{"body"}}
+	}
+
+	cust.ID = id
+
+	resp, err := h.store.Update(ctx, cust)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
