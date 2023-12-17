@@ -58,7 +58,7 @@ func TestK20220329122401_Down(t *testing.T) {
 		err error
 	}{
 		{"sucess", nil},
-		{"failure", errors.New("invali migration")},
+		{"failure", errors.New("invalid migration")},
 	}
 
 	for i, tc := range testCses {
