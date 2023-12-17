@@ -92,7 +92,7 @@ func TestAddingCustomer(t *testing.T) {
 }
 
 func TestDeletingCustomer(t *testing.T) {
-	uid := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca2")
+	uid := uuid.MustParse("313c08cd-9269-4716-aab7-68342b9efd2b")
 	uid1 := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca1")
 
 	Cases := []struct {
@@ -143,7 +143,7 @@ func TestDeletingCustomer(t *testing.T) {
 }
 
 func TestGetCustomers(t *testing.T) {
-	uid := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca2")
+	uid := uuid.MustParse("637739bf-9716-431b-9087-546e650c4269")
 
 	Cases := []struct {
 		desc      string
@@ -155,9 +155,9 @@ func TestGetCustomers(t *testing.T) {
 			"Get existent data",
 			model.Customer{
 				ID:    uid,
-				Name:  "A",
-				Email: "A@xyz.com",
-				Phone: "1111111111",
+				Name:  "B",
+				Email: "B@xyz.com",
+				Phone: "2222222222",
 			},
 			nil,
 			nil,
@@ -193,7 +193,7 @@ func TestGetCustomers(t *testing.T) {
 }
 
 func TestGetCustomersByID(t *testing.T) {
-	uid := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca2")
+	uid := uuid.MustParse("637739bf-9716-431b-9087-546e650c4269")
 	invalidUID := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca5")
 
 	Cases := []struct {
@@ -207,9 +207,9 @@ func TestGetCustomersByID(t *testing.T) {
 			"Get existent id", 
 			model.Customer {
 				ID: uid, 
-				Name: "A", 
-				Email: "A@xyz.com", 
-				Phone: "1111111111",
+				Name: "B", 
+				Email: "B@xyz.com", 
+				Phone: "2222222222",
 			},
 			uid, 
 			nil, 
@@ -250,7 +250,7 @@ func TestGetCustomersByID(t *testing.T) {
 }
 
 func TestUpdateCustomer(t *testing.T) {
-	uid := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca2")
+	uid := uuid.MustParse("637739bf-9716-431b-9087-546e650c4269")
 	uid1 := uuid.MustParse("37387615-aead-4b28-9adc-78c1eb714ca1")
 
 	Cases := []struct {
