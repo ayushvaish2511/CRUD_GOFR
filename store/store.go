@@ -40,7 +40,7 @@ func (customer) Create(ctx *gofr.Context, customer model.Customer) (model.Custom
 			ID:    [16]byte{},
 			Name:  "",
 			Email: "",
-			Phone: 0,
+			Phone: "",
 		}, errors.DB{Err: err}
 	}
 	return resp, nil

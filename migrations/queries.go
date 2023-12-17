@@ -1,7 +1,8 @@
 package migrations
 
 const (
-	CreateTable         = "CREATE TABLE IF NOT EXISTS customers" + " (id varchar(36) PRIMARY KEY , name varchar(50) , email varchar(50) , phone bigint);"
+	CreateTable = "CREATE TABLE IF NOT EXISTS customers" +
+		" (id varchar(36) PRIMARY KEY , name varchar(50) , email varchar(50) , phone varchar(50));"
 	DroopTable          = "Drop table If EXISTS customers"
 	AddCountry          = "ALTER TABLE customers ADD COLUMN country varchar(20);"
 	DropCountry         = "ALTER TABLE customers DROP COLUMN country;"

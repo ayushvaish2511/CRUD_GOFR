@@ -16,7 +16,7 @@ func main() {
 	h := handler.New(s)
 
 	appName := app.Config.Get("APP_NAME")
-
+	
 	err := migration.Migrate(appName, dbmigration.NewGorm(app.GORM()), migrations.All(),
 		dbmigration.UP, app.Logger)
 	if err != nil {
