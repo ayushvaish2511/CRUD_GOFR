@@ -25,15 +25,14 @@ func main() {
 		return
 	}
 
-	// specifying the different routes supported by this service
 	app.GET("/customer", h.Get)
 	app.GET("/customer/{id}", h.GetById)
 	app.POST("/customer", h.Create)
 	app.PUT("/customer/{id}", h.Update)
 	app.DELETE("/customer/{id}", h.Delete)
 	
-	// starting the server on a custom port
-	app.Server.HTTP.Port = 9092
+
+	app.Server.HTTP.Port = 9090
 	app.Server.MetricsPort = 2325
 	app.Start()
 }

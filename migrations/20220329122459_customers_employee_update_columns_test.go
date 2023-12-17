@@ -16,11 +16,11 @@ func TestK20220329122459_Up(t *testing.T) {
 	k := K20220329122459{}
 
 	mock.ExpectExec(AddCountry).WillReturnResult(sqlmock.NewResult(1, 0))
-	mock.ExpectExec(invalidQuery).willReturnError(errors.New("invalid migration"))
+	mock.ExpectExec(invalidQuery).WillReturnError(errors.New("invalid migration"))
 
 	testCases := []struct {
 		desc string
-		err error
+		err  error
 	}{
 		{"success", nil},
 		{"failure", errors.New("invalid migration")},
@@ -33,16 +33,16 @@ func TestK20220329122459_Up(t *testing.T) {
 	}
 }
 
-func TestK20220329122459_Up(t *testing.T) {
+func TestK20220329122459_Down(t *testing.T) {
 	mock, db := initializeTest(t)
 	k := K20220329122459{}
 
 	mock.ExpectExec(DropCountry).WillReturnResult(sqlmock.NewResult(1, 0))
-	mock.ExpectExec(invalidQuery).willReturnError(errors.New("invalid migration"))
+	mock.ExpectExec(invalidQuery).WillReturnError(errors.New("invalid migration"))
 
 	testCases := []struct {
 		desc string
-		err error
+		err  error
 	}{
 		{"success", nil},
 		{"failure", errors.New("invalid migration")},
